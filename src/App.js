@@ -1,25 +1,22 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import settings from './data';
+import Card from './Card';
+// import Timer from './Timer';
+// import PlayStop from './Timer';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div id='grid'>
+      {/* <PlayStop /> */}
+      <div></div>
+      <Card settings={settings}/>
+      <div></div>
+      {/* <Break /> */}
+      {/* <cardHistory /> */}
     </div>
   );
 }
+
 
 export default App;

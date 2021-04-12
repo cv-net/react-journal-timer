@@ -1,0 +1,46 @@
+
+.workJournal {
+    padding: 1em;
+    border: 1px solid black;
+    border-radius: 25px;
+  }
+  
+#sessioncontrols > img {
+    width: 4%;
+    padding: 1em;
+}
+
+#timerDisplay {
+    padding: .5em;
+    border: 1px solid black;
+    border-radius: 25px;
+    width: 20%;
+    height: 10%;
+}
+
+#playlist {
+    width: 70%;
+    margin: 0 auto;
+    border: 1px solid black;
+    padding: 1em;
+}
+
+#grid {
+    display: grid;
+    grid-template-columns: 33.33% 33.33% 33.33% ;
+    grid-template-rows: 33.33% 33.33% 33.33% ;
+    margin: 1em;
+}
+
+#main-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 3fr;
+    padding: 3em;
+    border: 1px solid black;
+    border-radius: 15%;
+}
+
+.workJournal{
+    grid-column: 1 / -1;
+}
