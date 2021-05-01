@@ -9,13 +9,12 @@ class Card extends Component {
             notes: [],
             value: '',
             // breakSetting: props.settings.break,
-            time: settings.time,
+            time: props.settings.pomodoro.time,
             timeDisplay: props.settings.pomodoro.time / 60 + ':00',
             session: null,
             timeElapsed: 0
         };
     }
-
 
     handleNote = (event)=>{
         this.setState({
@@ -38,18 +37,15 @@ class Card extends Component {
 
     startSession = ()=>{
         let duration = this.state.time;
-        console.log(duration)
         let timer = duration, minutes, seconds;
         let timeElapsed = 0;
+        console.log(timer)
         this.session = setInterval(() => {           
             minutes = parseInt(timer / 60, 10);
             seconds = parseInt(timer % 60, 10);
-    
             minutes = minutes.toString().length == 1 ? `0${minutes}` : `${minutes}`;
             seconds = seconds.toString().length == 1 ? `0${seconds}` : `${seconds}`;
             console.log(`${minutes}:${seconds}`);
-
-
 
             if (timer < 0) {
                 timer = duration;
@@ -172,22 +168,22 @@ class TogglingControls extends Component {
         if (this.state.stop) {
             return(
                 <div id='sessioncontrols'>
-                    <img src='/play.png' onClick={this.handlePlay}></img>
-                    <img src='/stopfalse.svg'></img>
+                    <img src='/play.png' alt='play button' onClick={this.handlePlay}></img>
+                    <img src='/stopfalse.svg' alt='stop button' ></img>
                 </div>
             );
         } else if (this.state.play) {
             return(
                 <div id='sessioncontrols'>
-                    <img src='/pause.png' onClick={this.handlePause}></img>
-                    <img src='/stop.png' onClick={this.handleStop}></img>
+                    <img src='/pause.png' alt='pause button' onClick={this.handlePause}></img>
+                    <img src='/stop.png' alt='stop button' onClick={this.handleStop}></img>
                 </div>
             );
         } else {
             return(
                 <div id='sessioncontrols'>
-                    <img src='/play.png' onClick={this.handlePlay}></img>
-                    <img src='/stop.png' onClick={this.handleStop}></img>
+                    <img src='/play.png' alt='play button' onClick={this.handlePlay}></img>
+                    <img src='/stop.png' alt='stop button' onClick={this.handleStop}></img>
                 </div>
             );
         }
