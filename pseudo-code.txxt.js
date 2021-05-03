@@ -1,4 +1,7 @@
 //next:
+  //mostly refactored, but need to be able to set duration variable dynamically as a prop from Card component
+
+
   //refactor with Hooks according to diagram in notebook
   //lots of this is undefined, may need to look over course more
 
