@@ -1,23 +1,41 @@
 import React, {useState} from 'react';
 import TimerInterface from './Timer';
 import TimeDisplay from './TimeDisplay';
-// import SessionInput from './SessionInput';
+import SessionInput from './SessionInput';
 // import WorkJournal from './WorkJournal';
 
 function Card() {
-    const [ time, setTime ] = useState(1500);
-    const [ timeDisplay, setTimeDisplay ] = useState('25:00');
+    const [ sessionTime, setSessionTime ] = useState(1500);
+    const [ timeDisplay, setDisplay ] = useState(`${sessionTime/60}:00`);
+    const [ isRunning, setIsRunning ] = useState(false);
+
+
+    const changeSessionTime = (session) => {
+        isRunning ? alert('Stop it first!') :
+            session = parseInt(session);
+            setSessionTime(session * 60);
+            setDisplay(`${session}:00`);
+    }
+
+    const isPlaying = (boolean) => {
+        setIsRunning(boolean);
+    }
 
     const changeTimeDisplay = (display) => {
-        setTimeDisplay(display);
+        setDisplay(display);
     }
+    
 
     return(
         <>
-            < TimerInterface time={time} changeTimeDisplay={changeTimeDisplay} />
             < TimeDisplay display={timeDisplay} />
-            {/* < SessionInput />
-            < WorkJournal /> */}
+            < TimerInterface 
+                time={sessionTime} 
+                changeTimeDisplay={changeTimeDisplay} 
+                isRunning={isPlaying}
+            />
+            < SessionInput changeSessionTime={changeSessionTime} />
+            {/* < WorkJournal />  */}
         </>
     );
 }

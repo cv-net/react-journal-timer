@@ -1,28 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import useInterval from '@use-it/interval';
-let duration = 1500;
-let timer = duration, minutes, seconds;
+let duration, minutes, seconds;
 
 function TimerInterface(props) {
-    duration = props.time;
     const [ play, setPlay ] = useState(false);
     const [ stop, setStop ] = useState(true);
     const [ delay, setDelay ] = useState(null);
+    const timer = useRef(props.time);
 
     useInterval(() => {
-        minutes = parseInt(timer / 60, 10);
-        seconds = parseInt(timer % 60, 10);
+        minutes = parseInt(timer.current / 60, 10);
+        seconds = parseInt(timer.current % 60, 10);
 
         minutes = minutes.toString().length == 1 ? `0${minutes}` : `${minutes}`;
         seconds = seconds.toString().length == 1 ? `0${seconds}` : `${seconds}`;
 
         console.log(`${minutes}:${seconds}`);
 
-        if (timer < 0) {
-            timer = 1500;
+        if (timer.current < 0) {
+            timer.current = props.time;
         }
 
-        timer--;
+        timer.current--;
 
         props.changeTimeDisplay(`${minutes}:${seconds}`);
 
@@ -32,18 +31,24 @@ function TimerInterface(props) {
         setPlay(true);
         setStop(false);
         setDelay(1000); 
+        props.isRunning(true);
     }
 
     const handlePause = () => {
         setPlay(false);
         setStop(false);
         setDelay(null);
+        props.isRunning(false);
     }
 
     const handleStop = () => {
         setPlay(false);
         setStop(true);
         setDelay(null);
+        timer.current = props.time;
+        props.changeTimeDisplay(`${props.time/60}:00`);
+        props.isRunning(false);
+
     }
 
     if (stop) {

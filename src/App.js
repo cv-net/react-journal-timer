@@ -11,7 +11,7 @@ function App() {
   return (
     <div id='grid'>
       {/* <PlayStop /> */}
-      <div></div>
+      {/* <div></div> */}
       {/* <Card settings={settings}/> */}
       < Card />
       <div></div>
